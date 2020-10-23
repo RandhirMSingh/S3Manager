@@ -1,0 +1,9 @@
+name: "S3Manager"
+description: "Manage S3 Bucket."
+author: "Randhir M Singh"
+runs:
+  using: docker
+  image: Dockerfile
+branding:
+  icon: database
+  color: green
