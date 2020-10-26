@@ -15,5 +15,7 @@ aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
   
 aws s3 cp ${FILE} s3://${S3_BUCKET}/ --recursive --region ${AWS_REGION} $*
 
+./downlaod_S3Object.swift ${REPO} ${PR_NUMBER}
+
 rm -rf ~/.aws
 
