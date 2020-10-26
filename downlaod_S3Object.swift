@@ -21,7 +21,7 @@ extension String {
 }
 
 let PR_NUMBER = 22
-let GITHUB_TOKEN = "489fdc6138794aa4d4d44b7cd2bd976076eca582"
+let GITHUB_TOKEN = CommandLine.arguments[5]
 let REPO = "RandhirMSingh/HackathonSampleApp"
 let issueURL = "https://api.github.com/repos/\(REPO)/issues/\(PR_NUMBER)/comments"
 
