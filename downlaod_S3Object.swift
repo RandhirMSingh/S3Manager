@@ -2,7 +2,7 @@
 
 import Foundation
 
-
+print(CommandLine.arguments)
 
 extension String {
     var images: [String] {
@@ -21,7 +21,7 @@ extension String {
 }
 
 let PR_NUMBER = 22
-let GITHUB_TOKEN = "adf80bc0998cf9d3f8990028ef8a7e896d55cf5b"
+let GITHUB_TOKEN = "489fdc6138794aa4d4d44b7cd2bd976076eca582"
 let REPO = "RandhirMSingh/HackathonSampleApp"
 let issueURL = "https://api.github.com/repos/\(REPO)/issues/\(PR_NUMBER)/comments"
 
