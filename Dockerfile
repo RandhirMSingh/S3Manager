@@ -1,5 +1,6 @@
 FROM python:3.7-alpine as pythonaws
 COPY --from=swift:5.1 . .
+COPY --from=ubuntu:latest . .
 RUN pip install --quiet --no-cache-dir awscli
 RUN pip install curl
 RUN swift -version
