@@ -16,7 +16,7 @@ aws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/credentials
 aws s3 cp ${FILE} s3://${S3_BUCKET}/ --recursive --region ${AWS_REGION} $*
 ls -all
 #this script downloads images from s3 bucket and updates PR
-swift downlaod_S3Object.swift ${S3_BUCKET} ${AWS_REGION} ${REPO} ${PR_NUMBER} ${GITHUB_TOKEN}
+swift /downlaod_S3Object.swift ${S3_BUCKET} ${AWS_REGION} ${REPO} ${PR_NUMBER} ${GITHUB_TOKEN}
 
 rm -rf ~/.aws
 
