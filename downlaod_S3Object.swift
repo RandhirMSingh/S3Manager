@@ -86,8 +86,39 @@ func createIssueComment(with body: String) {
         process.waitUntilExit()
     } catch {
         print("Error: \(error): \nError while uploading comment.")
+    } 
+}
+
+func createIssueCommentWithAPI(with markdown: String) {
+    let semaphore = DispatchSemaphore (value: 0)
+    let body = """
+    {
+    "body": "\(markdown)"
     }
-    
+    """
+
+    let parameters = body//"{\n  \"body\": \"test\"\n}"
+    let postData = parameters.data(using: .utf8)
+
+    var request = URLRequest(url: URL(string: issueURL)!,timeoutInterval: Double.infinity)
+    request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
+    request.addValue("Bearer \(GITHUB_TOKEN)", forHTTPHeaderField: "Authorization")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    request.httpMethod = "POST"
+    request.httpBody = postData
+
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      guard let data = data else {
+        print(String(describing: error))
+        return
+      }
+      print(String(data: data, encoding: .utf8)!)
+      semaphore.signal()
+    }
+
+    task.resume()
+    semaphore.wait()
 }
 
 let s3Bucket = "randhir-hackathon-screenshots-ap-south-1"
@@ -96,5 +127,5 @@ let s3Objects = getObjects(from: s3Bucket)
 //Get url for all images
 let urls = getURLs(for: s3Objects.images, from: s3Bucket, in: region)
 let markdown = getMD(for: urls)
-createIssueComment(with: markdown)
+createIssueCommentWithAPI(with: markdown)
 
