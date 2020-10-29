@@ -1,6 +1,9 @@
 #!/usr/bin/env swift
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 print(CommandLine.arguments)
 
