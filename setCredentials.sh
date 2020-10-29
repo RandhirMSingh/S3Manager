@@ -20,5 +20,5 @@ echo repo Name: ${REPO}
 #this script downloads images from s3 bucket and updates PR
 swift /downlaod_S3Object.swift ${S3_BUCKET} ${AWS_REGION} ${REPO} ${PR_NUMBER} ${GITHUB_TOKEN}
 
-rm -rf ~/.aws
+#rm -rf ~/.aws
 
