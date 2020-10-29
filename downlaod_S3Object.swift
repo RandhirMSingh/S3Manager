@@ -30,7 +30,7 @@ func getObjects(from bucket: String) -> String {
     process.executableURL = URL(fileURLWithPath: "/usr/bin/env")
     let pipe = Pipe()
     process.standardOutput = pipe
-    process.arguments = ["aws", "s3", "ls", "s3://\(bucket)"]
+    process.arguments = ["aws", "s3", "ls", "s3://\(bucket)/\(REPO)/\(PR_NUMBER)"]
     
     do {
         try process.run()
