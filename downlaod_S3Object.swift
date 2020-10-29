@@ -6,6 +6,13 @@ import FoundationNetworking
 #endif
 
 print(CommandLine.arguments)
+let s3Bucket = CommandLine.arguments[1]
+let region = CommandLine.arguments[2]
+let REPO = CommandLine.arguments[3]
+let PR_NUMBER = CommandLine.arguments[4]
+let GITHUB_TOKEN = CommandLine.arguments[5]
+let issueURL = "https://api.github.com/repos/\(REPO)/issues/\(PR_NUMBER)/comments"
+
 
 extension String {
     var images: [String] {
@@ -22,11 +29,6 @@ extension String {
         return []
     }
 }
-
-let PR_NUMBER = 22
-let GITHUB_TOKEN = CommandLine.arguments[5]
-let REPO = "RandhirMSingh/HackathonSampleApp"
-let issueURL = "https://api.github.com/repos/\(REPO)/issues/\(PR_NUMBER)/comments"
 
 func getObjects(from bucket: String) -> String {
     let process = Process()
@@ -124,8 +126,6 @@ func createIssueCommentWithAPI(with markdown: String) {
     semaphore.wait()
 }
 
-let s3Bucket = "randhir-hackathon-screenshots-ap-south-1"
-let region = "ap-south-1"
 let s3Objects = getObjects(from: s3Bucket)
 //Get url for all images
 let urls = getURLs(for: s3Objects.images, from: s3Bucket, in: region)
