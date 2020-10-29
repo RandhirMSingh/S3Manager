@@ -83,6 +83,7 @@ func createIssueComment(with body: String) {
     print(body)
     do {
         try process.run()
+        process.waitUntilExit()
     } catch {
         print("Error: \(error): \nError while uploading comment.")
     }
