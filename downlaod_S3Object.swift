@@ -47,9 +47,9 @@ func getObjects(from bucket: String) -> String {
     }
 }
 //https://bucket-name.s3.Region.amazonaws.com/key
-func getURLs(for images: [String], from s3Bucket: String, in region: String) -> [String] {
+func getURLs(for images: [String], from s3Bucket: String, in region: String, prefix: String) -> [String] {
     return images.map {
-        "https://\(s3Bucket).s3.\(region).amazonaws.com/\($0)"
+        "https://\(s3Bucket).s3.\(region).amazonaws.com/\(prefix)/\($0)"
     }
 }
 
@@ -128,7 +128,7 @@ func createIssueCommentWithAPI(with markdown: String) {
 
 let s3Objects = getObjects(from: s3Bucket)
 //Get url for all images
-let urls = getURLs(for: s3Objects.images, from: s3Bucket, in: region)
+let urls = getURLs(for: s3Objects.images, from: s3Bucket, in: region, prefix: "\(REPO)/\(PR_NUMBER)")
 let markdown = getMD(for: urls)
 createIssueCommentWithAPI(with: markdown)
 
