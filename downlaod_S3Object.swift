@@ -57,7 +57,7 @@ func getMD(for urls: [String]) -> String {
     var markDown = ""
     for imageURL in urls {
         markDown += """
-        _<img alt='Screenshot' height=500 width=300 src='\(imageURL)'>_
+        |<img alt='Screenshot' height=500 width=300 src='\(imageURL)'>|
         """
     }
     
